@@ -1,0 +1,813 @@
+\documentclass[10pt, titlepage, onecolumn, openany]{article}
+\pagestyle{plain}
+\usepackage{setspace}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{float}
+\usepackage{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage[letterpaper, left=1.5in, right=1in, top=1in, bottom=1in]{geometry}
+\usepackage{csvsimple}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+pdftitle={Standard Automation Interface Layer},
+pdfauthor={Matthew Hickey},
+pdfsubject={SAIL API},
+pdfkeywords={sail, automation},
+bookmarksnumbered=true,
+bookmarksopen=true,
+bookmarksopenlevel=1,
+colorlinks=false,
+pdfstartview=Fit,
+pdfpagemode=UseOutlines,    % this is the option you were lookin for
+}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\title{SAIL - Standard Automation Interface Layer}
+\author{Matthew Hickey}
+\date{\today}
+
+\newcommand\frontmatter{
+    \cleardoublepage
+    \pagenumbering{roman}
+}
+
+\newcommand\mainmatter{
+    \cleardoublepage
+    \pagenumbering{arabic}
+}
+
+\newcommand\backmatter{
+    \cleardoublepage
+    \pagenumbering{Roman}
+}
+
+\renewcommand{\contentsname}{Table of Contents}
+\doublespacing
+
+
+% BEGINNING OF DOCUMENT
+\begin{document}
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE Memorial University of Newfoundland}\\[1.5cm]
+\textsc{\Large Faculty of Engineering and Applied Science}\\[0.5cm] % Major heading such as course name
+\textsc{\large Work Term 3 Report - Ciena Corporation}\\[0.5cm] % Minor heading such as course title
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \huge \bfseries SAIL - Standard Automation Interface Layer}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Author:}\\
+Matthew \textsc{Hickey}
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Coordinator:} \\
+Mr. Patrick \textsc{Sullivan} % Supervisor's Name
+\end{flushright}
+\end{minipage}\\[2cm]
+
+% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%\Large \emph{Author:}\\
+%John \textsc{Smith}\\[3cm] % Your name
+
+%----------------------------------------------------------------------------------------
+%	DATE SECTION
+%----------------------------------------------------------------------------------------
+
+{\large December 19, 2018}\\[2cm] % Date, change the \today to a set date if you want to be precise
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+\includegraphics[scale=0.99]{media/cienaLogo.png}\\[1cm] % Include a department/university logo - this will require the graphicx package
+
+%----------------------------------------------------------------------------------------
+
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+\frontmatter
+\section*{Executive Summary}
+\addcontentsline{toc}{section}{Executive Summary}
+
+The software development community at Ciena Corporation has a multitude of test
+automation frameworks for testing their own area of functionality. As of the
+present, there is no singular location where results of all tests can be viewed,
+and there is no automation to enable these tests when a new software load builds
+successfully. Therefore, the Standard Automation Interface Layer (SAIL) was
+commissioned to address these shortcomings.
+
+Designed as an Application Programming Interface (API), SAIL will trigger multiple Ciena
+test automation frameworks, and will compile all results into a singular location
+where custom dashboards can be created using ElasticSearch tools. The API was
+designed using Swagger Tools, and its functionality requires the use of a
+relational database management system to store test results.
+
+The API was implemented starting with an automatically generated server stub
+using Swagger Tools, and modified with a Web Server Gateway Interface (WSGI)
+plug-in known as uWSGI to handle multiple requests simultaneously. The specific
+database system chosen for SAIL is a PostgreSQL managed database. When a request
+is sent to the API, the functionality is implemented in controllers that call upon
+helper functions that are stored in modules. These modules can communicate with
+the database, test automation engines, and other APIs.
+
+As of the submission of this report, SAIL is still in the development stage.
+Base functionality exists, as when SAIL receives a trigger, it can execute tests
+on separate servers, and upon completion of these tests receive the results and
+store them in the database. The tasks remaining before SAIL is completely
+functional are finding a dedicated computer to host the server instead of an
+employee workstation, to integrate ElasticSearch with SAIL data, and to register
+for automated notifications following completion of a successful build.
+
+Therefore, the it is the recommendation of this report to continue development
+on SAIL, starting with the implementation of the three aforementioned tasks before
+deploying SAIL as a production solution for Ciena test automation.
+
+\clearpage
+\begin{singlespace}
+\tableofcontents
+\clearpage
+\section*{List of Acronyms}
+\addcontentsline{toc}{section}{List of Acronyms}
+\begin{center}
+\csvautotabular[before reading={\catcode`&=12}]{acronyms.csv}
+\end{center}
+\end{singlespace}
+\clearpage
+\mainmatter
+% set these after the TOC
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+\section{Introduction}
+\subsection{Ciena Corporation}
+Ciena Corporation (Ciena) is a networking technology company that
+provides products and services to corporations and governments
+agencies internationally, including (but not limited to) Bell Canada,
+Comcast, British Telecom (BT), and the National Aeronautics and Space
+Administration (NASA) \cite{cienaCorpFacts}.
+
+Ciena's executive headquarters is located in Hanover, Maryland,
+however the highest percentage of its employees are based in Ottawa,
+Ontario. The Ottawa campus represents nearly a third of Ciena's total
+workforce, and more than 50\% of Ciena's Research and Development
+(R\&D) personnel \cite{cienaWorking}.
+
+One of the buildings of Ciena's three-building Ottawa Campus is shown
+below in Figure \ref{bldg} \cite{buildingPic}.
+\begin{figure}[ht!]
+\centering
+\frame{\includegraphics[scale=0.085]{media/cienaBldgB.jpeg}}
+\caption{Building B of the three-building Ciena campus in Ottawa.}
+\label{bldg}
+\end{figure}
+
+\subsection{Ciena 6500 Product}
+The Ciena 6500 Packet-Optical Platform (formerly the Nortel Optical
+Multiservice Edge) is a networking product that enables a
+programmable infrastructure foundation for adaptive networks. It
+allows the flexibility of various networking protocols
+such as Ethernet, Optical Transport Network (OTN), Fibre Channel, and
+several others \cite{6500brochure}. This product is used in data and
+networking facilities belonging to some of the largest technology
+entities in the world. Shown below in Figure \ref{pic6500}
+is two sizes of the 6500 T-Series, which allows switching speeds of
+up to Terabits per second \cite{tseries}.
+\begin{figure}[H]
+\centering
+\frame{\includegraphics[scale=0.85]{media/6500tseries.png}}
+\caption{The 6500 T-Series in two sizes, the T-12 (left) and T-24 (right).}
+\label{pic6500}
+\end{figure}
+
+When this report discusses building software and various software releases, it
+is referring to software for the 6500.
+
+\subsection{Demand for a Standard Automation Framework}
+The concept of the Standard Automation Interface Layer (SAIL) for Ciena Test
+Automation was born when the Ciena Software Development Community required a
+standardized approach to combine results from various test automation frameworks
+into a single location. Currently, different teams at Ciena do not have a
+unified way of deploying, using, or monitoring results from simulation testing.
+SAIL will act as an interface layer between the build framework and all test
+automation frameworks used by the Ciena Software Development Community, thereby
+ensuring a unified test automation reporting environment.
+
+The testing frameworks were decided not to be tied in with the build process to
+emphasize modularity of the software. This means keeping components as separate
+and independent as possible so if they need to be maintained or replaced, one
+does not have to redesign the whole system, just a small portion of it. Another
+bonus to modular design is reusability. If a feature or component of the
+software is designed to be generic and modular, then if another use case
+materializes that requires similar functionality, the same feature/component can
+be implemented with minimal changes.
+
+
+\subsection{Application Programming Interfaces}
+An Application Programming Interface (API) is software that acts as an intermediary
+between separate applications. APIs are vital to everyday software usage, as they
+allow developers to easily link services together, such as the iPhone Mail
+application linking to a Gmail account, or an online service using Facebook
+credentials for its own registration.
+
+SAIL's design requirements led its implementation to mostly be in the form of a
+ReST API. A ReST API is defined as being an API that takes advantage of existing
+protocols (in this case HTTP) and that is stateless, meaning that each call to
+the API is independent of other calls to the API, and each call contains all
+information needed to be fulfilled \cite{whatIsAPI}. The functionality of ReST APIs
+allows developers to have the ability to create, retrieve, update, and
+delete (CRUD) data. Each CRUD operation has its own specific corresponding HTTP
+verb. Respectively, these are POST, GET, PUT, and DELETE. Descriptions of these
+verbs are shown below in Table \ref{httpVerbs} \cite{httpMethods}.
+
+\begin{table}[b]
+\caption{HTTP Verbs}
+\centering
+\begin{tabular}{|c|p{5cm}|}
+    \hline
+    \textbf{Verb} & \textbf{Description} \\
+    \hline
+    POST & Used to create a resource on a server. Allows information to be
+    sent securely in request body. \\
+    \hline
+    GET & Retrieves a resource from a server if it exists. \\
+    \hline
+    PUT & Similar to POST, but used to update or modify a resource on a server
+    if it exists. \\
+    \hline
+    DELETE & Used to delete or remove a resource from a server if it exists. \\
+    \hline
+\end{tabular}
+\label{httpVerbs}
+\end{table}
+
+All endpoints of the API are in the form of a Uniform Resource Locator (URL), and a method is
+assigned to each one. It is possible to have multiple endpoints with the same name
+as long as they are using different verbs. For example, \url{http://www.example.org/user/} can
+be used to retrieve all users with a GET request, but can be used to create a user
+by providing information in the body of the request with a POST request.
+The specific design and implementation of the SAIL API will be
+discussed in more detail in the Design and Implementation sections
+of this report.
+
+\subsection{Build and Execution Engines}
+When multiple software builds and tests are occurring simultaneously, it is
+necessary to have something to manage computing resources and control flow.
+This is where build (or execution) engines are useful. They allow tasks to be grouped into
+jobs (or plans) and executed multiple times with different parameters (such as test name,
+software version, etc.).
+
+SAIL recognizes the fact that various teams at Ciena use different engines for
+their test automation, the two most popular being Jenkins (open source continuous
+automation engine) and Bamboo (proprietary software licensed by Atlassian). SAIL will
+communicate with these automation tools through APIs, and not by executing the tests and
+managing computing resources themselves. Again, this is to lead to a modular design that is easy
+to maintain. It is unnecessary to design custom resource management software when countless
+specialized tools can perform the required tasks.
+
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%               SECTION 2 - DESIGN REQUIREMENTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Design Requirements}
+Before any software development could begin for SAIL, thorough design criteria
+needed to be captured so SAIL could become a robust solution for standard test automation.
+This started by outlining the most basic requirements of what SAIL needed to accomplish,
+then layering more design criteria on top of these base requirements.
+\subsection{Basic Requirements}
+The original, most basic design criteria for SAIL are listed below in Table
+\ref{tab:basicTable} \cite{sailDesignOrig}.
+\begin{table}[h]
+\caption{SAIL Basic Requirements}
+\centering
+\begin{tabular}{|c|l|}
+    \hline
+    \# & Requirement \\
+    \hline
+    1 & Support several 6500 automation frameworks and be easily extensible \\
+    \hline
+    2 & Have a simple configuration file to define parameters of test frameworks \\
+    \hline
+    3 & Trigger/Report specified tests following \underline{successful} build \\
+    \hline
+    4 & Visibility of test results in single location via ElasticSearch \\
+    \hline
+    5 & Be completely independent from the build engine/process \\
+    \hline
+\end{tabular}
+\label{tab:basicTable}
+\end{table}
+
+
+The first item is a necessary criterion due to the \textit{standard} nature of SAIL.
+It needs to be generic so that it may function with multiple frameworks, and be
+modular enough to extend it further if need be. The second requirement relates to the first,
+as there needs to be a simple, elegant way of configuring test automation frameworks
+with SAIL. A single configuration file was decided to be the easiest way to do this,
+where configuration information would be stored as key-value pairs for every framework
+associated with the tool. The exact information needed in this file would be decided upon
+later. The third item comes from the fact that the build engine already determines if
+the build passes or fails. However, this is a very basic test that does \underline{not}
+test all functional components of the software. This means that all test automation
+frameworks will be triggered following successful builds only, as it would be a
+waste of time and resources to run tests on a failed build. The requirement of a
+single viewpoint for test results using ElasticSearch was outlined due to the
+goal of SAIL becoming a company-wide tool for test-automation. Storing data in
+ElasticSearch allows anybody with access to the data to easily create their own
+dashboards with whatever information they deem relevant to themselves. If data
+was not available to the ElasticSearch service, it would be the responsibility
+of SAIL developers to create custom dashboards for every SAIL user, which is not
+a scalable option. Finally, the last basic requirement for SAIL's design was to
+make it completely independent from the build engine and process. This is due to
+need to decouple the build process from the test process, because when the build
+is completed, the responsibility of the build engine ends, and the build
+resources are not responsible for executing tests. Therefore the entire SAIL
+framework will have to be completely independent from the build.
+
+Based on past projects from the Off-System Tools team, it was decided that the
+best design for the required functionality would be to create a Web-based API
+\cite{pftoolsWebApi}. This is due to the success and adoption of in-house tools
+like Copera, a Web-based API that aids the build engine to plan tasks, and the
+Test/Build Results Analysis Tool (TRAT), which utilizes a Web-based API to
+communicate with a database (DB) and issue tracking software. TRAT is the
+subject of a previous work term report \cite{tratReport}.
+
+The other most promising alternative for SAIL's design aside from the API is to create a
+code base that resides on Ciena's internal file storage system,
+and execute this code
+from the server where the build is occurring. The issue with
+this design
+is that SAIL's functionality would not be independent of the
+build process, as the
+build server would be executing the SAIL code, which does not
+satisfy the design requirement
+that SAIL be independent and not tied into the build process.
+Therefore, it was decided
+that SAIL would be designed as a Web-based API. A high-level
+block diagram illustrating the
+basic design requirements and operations of SAIL is shown below
+in Figure \ref{basicHLD} \cite{sailbasichld}. Additional components
+in this figure will
+be discussed later in this section.
+
+\begin{figure}[H]
+\centering
+\frame{\includegraphics[scale=0.55]{media/basicSailHLD.png}}
+\caption{The high-level block diagram showing the design that
+captures
+the most basic design requirements.}
+\label{basicHLD}
+\end{figure}
+
+\subsection{Information Content and Exchange Format}
+As mentioned before, SAIL's main architecture is in the form of
+a Web-based API. This means it receives information from various
+sources, and completes tasks with other pieces of software. For
+this functionality to work as planned, the information provided
+in each exchange must be detailed enough to satisfy all
+requirements
+on each end of the process, but be standardized enough the
+information can be used for all test automation frameworks.
+For example, if a certain test
+needs to be provided a software version as a parameter, SAIL
+will either need to be provided with this parameter, or have the
+ability to find it itself. Table \ref{inputParams} below summarizes
+the parameters and the reason they were chosen.
+
+\begin{table}[h]
+\caption{Input Parameters}
+\centering
+\begin{tabular}{|c|p{5cm}|}
+    \hline
+    \textbf{Parameter} & \textbf{Reason} \\
+    \hline
+    load\_location & Provides file path to latest software build. Needed to
+    retrieve build to test. \\
+    \hline
+    build\_load & Release number of the software. Used to automatically find
+    latest build for this version. \\
+    \hline
+    notification\_sent\_time & The time that the input was sent. Required for
+    logging purposes. \\
+    \hline
+    build\_context & Two letters that identify the exact build for a given load.
+    Starts at AA and increases AB, AC, etc. Needed to determine exact build load
+    and artifacts. \\
+    \hline
+    source\_branch & The version control branch whose source code was used for
+    the build. Required for logging purposes. \\
+    \hline
+\end{tabular}
+\label{inputParams}
+\end{table}
+
+In addition to the design challenge of making the content of
+the exchanged information generic and robust, the
+exchange format also needed to be decided. Some of the most
+common formats used for information exchange across the Internet
+are Extensible Markup Language (XML), and JavaScript Object
+Notation (JSON).
+
+JSON is described as a lightweight format
+for transferring data, that is easily human-readable. Its
+syntax is similar to that of the C-family of languages (C,
+C++, JavaScript, Python) \cite{jsonsumm}. XML is very similar
+to the syntax of Hypertext Markup Language (HTML), and supports
+custom namespaces and schemas. JSON Equivalent
+examples of these formats can be found in Appendix A.
+
+JSON and XML are interchangeable regarding data content for the
+majority of applications, however JSON is faster to read and write,
+and easier to parse for information compared to XML, as XML requires
+a specialized parser to retrieve the information \cite{xmljson}.
+Also, JSON can be easily parsed into a Python dictionary, as the
+syntax is almost identical. Therefore, the decision was made to use
+JSON as the data interchange format for SAIL's Web-based
+communication.
+
+Shown below in Listing \ref{inputExample} is an example of the input
+parameters to the SAIL API in JSON format.
+
+\lstinputlisting[caption=Input parameters to SAIL API,label=inputExample]{extra/input.json}
+
+\subsection{API Design}
+When designing an API, it is important to outline all the requirements
+for its functionality before any major coding development begins.
+This is common practice not just for API development, but for all
+software development projects.
+
+It is easy to add endpoints when adding more features to an API,
+however changing an endpoint once it is designed and implemented is
+dangerous, as other services that depend on that endpoint will no
+longer function, causing the entire framework to fail. Luckily, tools
+exist to streamline the process of robust API design. For SAIL,
+Swagger Tools were used to design the API.
+
+Swagger Tools are a "freemium" online set of tools that aid developers
+to Design, Build, Document, Test, and Standardize their APIs
+\cite{swagHome}. A Swagger-defined API begins with a Swagger 2.0 API
+specification. This is in the form of a YAML Ain't Markup Language
+(YAML) file, which is a super-set of JSON. This configuration file
+is used to automatically generate a server stub, client Software
+Development Kits (SDK), and interactive documentation. The
+configuration file contains an outline of every endpoint that
+the API must contain, and allows the definition of endpoint HTTP
+methods, summary, description, possible responses, and parameters.
+The Swagger 2.0 definition of the SAIL API can be found in Appendix B.
+Figure \ref{swaggerDoc} illustrates the auto-generated documentation
+from the YAML definition.
+
+\begin{figure}[H]
+\centering
+\frame{\includegraphics[scale=0.45]{media/swagger_doc.png}}
+\caption{Auto-generated swagger documentation for SAIL API}
+\label{swaggerDoc}
+\end{figure}
+
+\subsubsection{Required Endpoints}
+According to the basic requirements of SAIL, endpoints must be
+implemented to accept information from successful build, and to
+accept test results from completed tests. All other endpoints
+are not required for base functionality, but can be implemented as
+needed (for example, accessing data from DB). These requirements
+appear as the endpoints \url{/build_finish_notification},
+\url{/trigger/notification}, and \url{/post_results}.
+
+\url{/build_finish_notification} is designed as a POST request that
+accepts information about a successful build and triggers test
+automation. This information is provided in the body of the POST
+request. \url{/trigger/notification} is also a POST request, but it
+takes its parameters in the URL instead of the body. This endpoint
+receives a notification from the Copera API that manages the build,
+and activates the \url{/build_finish_notification} endpoint with
+information it finds. These notifications are meant to be automated, however
+programs need to register to receive them. As of the time of writing this
+report, SAIL has not been registered for Copera notifications.
+After a test completes, a POST request is made to \url{/post_results}
+containing information about the test results. This endpoint stores results in a
+DB.
+
+\subsection{Database Design}
+Due to the requirement for keeping amalgamated records from all Ciena test
+automation, a dedicated DB was required to store all test results. There are two
+main classes of DBs, Structured Query Language (SQL) databases, and No-SQL
+databases.
+
+SQL databases are Relational Database Management Systems (RDBMS). Databases
+of this store their data in object known as tables, where each entry is a row,
+and the information of that entry is stored in columns (much like a spreadsheet.)
+\cite{rdbmsinfo}. The advantages of using a RDBMS is that it uses a simple data
+structure (spreadsheet), speed, and the means of communicating with the DB - through
+SQL. SQL databases guarantee atomicity, consistency, isolation, and durability (ACID)
+properties for transitions, which ensures the integrity of transactions.
+ACID properties are summarized in Table \ref{ACID} below \cite{aciddef}. SQL database performance
+is increased through vertical scaling, which means by increasing the processing
+power of an existing machine.
+
+Conversely, No-SQL Databases are non-relational databases. They offer a variety
+of data management models such as key-value, graph, and document. This offers
+more flexibility in how data is stored, at the sacrifice of the overall consistency
+of the data. While SQL databases ensure ACID properties, NoSQL databases do not
+have these properties to allow for more flexible data models that are horizontally
+scalable, meaning database performance is increased by adding more computing nodes
+to the database structure \cite{awsNoSql}.
+\begin{singlespace}
+\begin{table}[H]
+\caption{ACID Properties}
+\centering
+\begin{tabular}{|c|p{9cm}|}
+    \hline
+    \textbf{Property} & \textbf{Definition} \\
+    \hline
+    Atomicity & All operations required by a transaction must be completed, or
+    none at all. No transaction is ever left partially completed. \\
+    \hline
+    Consistency & After a transaction, the database must stay in a consistent state.
+    Transactions cannot have ill effects on the data. \\
+    \hline
+    Isolation & When multiple transactions are occurring simultaneously, each
+    transaction must be fulfilled as if it is the lone transaction. \\
+    \hline
+    Durability &  If the database system fails or restarts, it should have the
+    ability to hold all existing data, or modified data if system fails during a
+    writing operation. \\
+    \hline
+\end{tabular}
+\label{ACID}
+\end{table}
+\end{singlespace}
+
+Due to SAIL's data would be standardized into a consistent schema, and the no need
+of horizontal scalability, the design decision was made to choose a SQL database for SAIL.
+
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%               SECTION 3 - IMPLEMENTATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Implementation}
+\subsection{Server Implementation}
+As mentioned previously, Swagger Tools can be used to auto-generate
+a server stub, where stub means a server can be started, but provides zero
+valuable functionality. While this is helpful for development purposes, it cannot
+be used for production, as the server can only handle one request at a
+time, and therefore cannot scale to a company-wide test automation solution.
+To address this problem, the server stub had to be augmented to be more
+robust.
+
+Similar problems were encountered in the past with other internal Ciena
+APIs, and all of them implement a protocol related to the Web Server
+Gateway Interface (WSGI), known as uWSGI. WSGI is a web protocol that
+has the ability to forward requests to APIs written in Python
+\cite{uwsgi}. Due to the fact that SAIL is written in Python, uWSGI
+was implemented into SAIL as a more robust hosting solution with the
+ability to handle multiple requests at once.
+
+Modifying the server to use uWSGI required removing the line of code that
+"runs" the application from the main module, and adding a separate file
+that imports the "app" object from the server under the name "application". This
+name is required so that it is recognized by the uWSGI plug-in. Running
+the application with uWSGI is done with a series of Linux shell commands. For
+reference, these commands were combined into a bash script and can be found in
+Appendix C. By modifying the SAIL server to use uWSGI instead of the native
+auto-generated hosting solution, a robust server now existed and further
+implementation could continue.
+
+\subsection{Database Implementation}
+As discussed in the Design section, a SQL database was chosen as the database
+solution for SAIL. The most common SQL database solutions are MySQL, and PostgreSQL.
+Due developer experience with PostgreSQL, its open-source nature, and the
+existence of Ciena resources running PostgreSQL databases, it was the
+chosen database solution for SAIL's data storage needs. The logo for PostgreSQL
+is shown below in Figure \ref{psql} \cite{psqllogo}.
+
+\begin{figure}[H]
+\centering
+\frame{\includegraphics[scale=0.20]{media/psqlLogo.png}}
+\caption{Elephant logo for the open-source PostgreSQL.}
+\label{psql}
+\end{figure}
+
+In the existing PostgreSQL database, a new schema had to be created. A database
+schema is essentially a namespace, and all SAIL operations are to occur in the
+newly created "sail" schema. In this schema, two tables were created,
+"notification\_history" and "sail\_master". The former table stores all notifications
+received by SAIL, and all information associated with them, while the latter is
+the main table for SAIL that stores all test results. A code example for creating
+the sail\_master table is shown below in Listing \ref{sqlcreate}. Once the tables
+were created, the proper credentials and access information were given to the SAIL
+API so that communication between the database and SAIL could occur.
+
+\lstinputlisting[caption=SQL Create Table,language=SQL,label=sqlcreate]{extra/create_table.sql}
+
+\subsection{Controller Implementation}
+It is common API practice to organize the function definitions of endpoints into
+files or classes known as controllers \cite{webapicontrol}. When the SAIL API
+receives a request to its endpoint, program flow is routed to the appropriate
+function in the appropriate controller. Using Swagger Tools, the routing and
+generation of the controllers is handled automatically.
+
+It was a design choice by SAIL developers to treat endpoint function definitions
+as "main" functions. This means that more functions were written elsewhere in the
+SAIL code base that would be called upon by the endpoint to accomplish tasks.
+These tasks include communicating with execution engines, the SAIL DB, and the
+Copera API. Designing the endpoints like this was a conscious decision to enforce
+software modularity. By having modular design, it is easier to maintain
+the software if the choice of DB solution changes, or if code for communicating
+with the DB needs to be re-used in other endpoints.
+
+\subsection{Modules Implementation}
+As mentioned in the Controller Implementation section, manually implemented
+modules were developed to handle external communications made by SAIL. All
+modules are in separate files inside a "modules" directory. These modules handle
+communications with the SAIL DB, Copera, and execution engines (which as of the
+submission of this report is only Jenkins).
+
+The module that handles communication with the SAIL DB is called "database\_util".
+This module securely stores the database access credentials, and all methods
+used for communicating with the SAIL DB. These methods (as of submission of this
+report) can initialize an empty row in the DB when a test is executed,
+and update an existing row in the DB when testing has completed.
+
+The module that communicates with Copera is called "lookup\_util". This name was
+chosen to allow the possibility for more programs to communicate with SAIL in the
+future. As of the submission of this report, the only function in the lookup\_util
+module retrieves information about the latest successful build when a notification
+is received from Copera.
+
+The module that communicates with execution engines is called "jenkins\_util", as
+all of its current communications are exclusively with the Jenkins execution engine.
+It contains one class, which is called JenkinsUtil. When an object of this
+class is instantiated, a server URL, a username, and a password are supplied, and
+the JenkinsUtil object will communicate with the Jenkins server for
+whatever communications follow. As of the submission of this report, the only
+method implemented in the this class is to trigger a test on the Jenkins server.
+It supplies the test name and other parameters that are required for running
+whatever test must be triggered.
+
+Through storing all of this functionality in a modules library, it stresses
+modularity in the SAIL code base and allows similar functionality to be re-used
+in separate places.
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%               SECTION 4 - RESULTS/PRESENT FUNCTIONALITY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Present Level of Functionality}
+As of the submission of this report, SAIL is not ready for production. However,
+much of its base functionality is complete. The API can retrieve build information
+when given a notification from Copera, however this part is not automated yet.
+It is necessary to register for Copera notifications, but the proof of concept
+has been completed by manually submitting the information Copera \textit{would}
+send to SAIL. When the information is retrieved an entry is made in the notification
+table of the SAIL DB. Next, an empty row is initialized in the master table of the
+SAIL DB for every test that will be triggered, and these tests are then triggered
+on the Jenkins server. When the test completes, Jenkins formats the required information
+and sends the results back to SAIL, and SAIL fills the appropriate row in the database
+with the results of each completed test. If a certain test acts as a "gating" test
+that must pass before other tests are permitted to run, the next steps are successfully
+triggered following the successful reporting of the gating test.
+
+SAIL is completely independent of the build, and acts as an interface layer between
+software builds and test automation frameworks. Results from tests are all stored
+in a central location, which is the SAIL DB. The computer that is hosting the
+SAIL server is currently an employee workstation, which is not completely reliable.
+This also means that there is not a dedicated URL for the SAIL API as is does not
+have a dedicated host as of now.
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%               SECTION 5 - CONCLUSIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusions}
+After assessing the present level of SAIL's functionality, it is clear that the
+SAIL API is a robust application that successfully automates test automation
+frameworks, and compiles results in a single location. However, there are still
+some missing pieces before SAIL becomes a company-wide solution for test automation.
+
+As mentioned in the previous section, SAIL does not currently have a dedicated
+computer to act as the server. This means a permanent URL cannot be assigned to
+the SAIL server until this occurs. Additionally, the ElasticSearch capabilities
+described in the basic design requirements have not yet been implemented. Without
+these capabilities, nobody will be able to access or visualize test results, making
+the adoption of the tool useless. Finally, SAIL has not registered for automated
+Copera notifications. Therefore, to trigger all test automation frameworks,
+a manual input must be provided, which somewhat negates the effect of the elegant
+automation that is part of SAIL's design.
+
+As an assessment of SAIL given at the time of submission of this report, it is
+a robust API that can elegantly manage test automation. Its shortcomings are not
+an issue with lack of design or planning, but with SAIL still being in the development
+stage. In the near future when more features and functionality are implemented
+into SAIL, it will be able to scale as the company-wide solution for test automation.
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%               SECTION 6 - RECOMMENDATIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Recommendations}
+SAIL's progress has made impressive strides since implementation work has begun.
+Given the state of development at that this reported was submitted,
+the following items are recommendations for SAIL's next steps before the API is
+ready for deployment:
+\begin{enumerate}
+    \item Find a permanent, dedicated host for the SAIL server.
+    \begin{itemize}
+        \item SAIL has been hosted on a developer's personal workstation
+        throughout its development.
+        \item A more reliable solution must be found before SAIL is deployed
+        as a production solution.
+    \end{itemize}
+    \item Integrate ElasticSearch capabilities with the SAIL DB.
+    \begin{itemize}
+        \item An original requirement of SAIL, ElasticSearch must be integrated
+        before deployment.
+        \item With results from the SAIL DB stored in ElasticSearch, SAIL users
+        can create their own dashboards with the data, a scalable option.
+    \end{itemize}
+    \item Register with Copera notifications.
+    \begin{itemize}
+        \item When registered for Copera notifications, the automation will be
+        complete for starting SAIL-registered test automation frameworks
+        following a successful build.
+    \end{itemize}
+\end{enumerate}
+With the implementation of these recommendations, SAIL will have the ability to
+scale and become a robust, reliable, user-friendly framework for Ciena test
+automation.
+\clearpage
+\backmatter
+\begin{singlespace}
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{ieeetr}
+\bibliography{report}
+\clearpage
+
+\section*{Appendix A: Examples of Data Exchange Formats}
+\addcontentsline{toc}{section}{Appendix A: Examples of Data Exchange Formats}
+\lstinputlisting[caption=JSON example]{extra/example.json}
+\lstinputlisting[caption=XML example, language=XML]{extra/example.xml}
+\clearpage
+\section*{Appendix B: SAIL Swagger 2.0 Definition}
+\addcontentsline{toc}{section}{Appendix B: SAIL Swagger 2.0 Definition}
+\lstinputlisting[caption=swagger.yaml]{extra/swagger.yaml}
+\clearpage
+\section*{Appendix C: Run SAIL Server Script}
+\addcontentsline{toc}{section}{Appendix C: Run SAIL Server Script}
+\lstinputlisting[caption=run.sh, language=bash]{extra/run.sh}
+\clearpage
+
+
+\end{singlespace}
+\end{document}
+% END OF DOCUMENT
