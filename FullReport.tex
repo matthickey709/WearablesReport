@@ -17,10 +17,30 @@
 \clearpage
 \end{singlespace}
 \clearpage
-\mainmatter
 % set these after the TOC
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
+\mainmatter
 % START BODY OF THE REPORT
+
+% Introduction
+\section{Introduction}
+\input{sections/intro.tex}
+
+
+
+% END OF MAIN BODY
+\clearpage
+\backmatter
+\begin{singlespace}
+    
+
+% REFERENCES
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{ieeetr}
+\bibliography{bib/comp_arch_bib}
+\clearpage
+% APPENDICES
+\end{singlespace}
 \end{document}
 % END OF DOCUMENT
