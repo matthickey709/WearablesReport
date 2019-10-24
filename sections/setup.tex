@@ -8,6 +8,7 @@
 \usepackage{color}
 \usepackage{float}
 \usepackage{parskip}
+\usepackage{titlesec}
 \usepackage[utf8]{inputenc}
 \usepackage[letterpaper, left=1.25in, right=1in, top=1in, bottom=1in]{geometry}
 \usepackage{csvsimple}
@@ -70,4 +71,11 @@ pdfpagemode=UseOutlines,    % this is the option you were lookin for
     \pagenumbering{Roman}
 }
 
+\setcounter{secnumdepth}{4}
+
 \renewcommand{\contentsname}{Table of Contents}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
