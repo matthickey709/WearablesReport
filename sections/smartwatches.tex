@@ -69,11 +69,11 @@ section will cover each of the watches shown above in greater detail.
 \paragraph{Background}
 The Apple Watch Series 5 is the newest iteration of smartwatch from Apple Inc., released in September
 2019. Priced at \$529, clearly this is considered a higher-end smartwatch, fitting in with Apple's
-other product lines (iPhone, iPad, and Mac). This watch has all-day battery life, a touch screen, 
-voice call, GPS, compass, and music streaming capabilities, as well as the ability to run thousands of
-apps from the Apple App Store, made specifically for the Apple Watch \cite{apple_specs}. This device
-is made for Apple users, as it requires an iPhone to make use of all its features. Its operating system
-is the Apple-designed watchOS.
+other product lines (iPhone, iPad, and Mac). This watch weighs between 30-40g depending the case, it
+has all-day battery life, a touch screen (324x394), voice call, GPS, compass, and music streaming capabilities,
+as well as the ability to run thousands of apps from the Apple App Store made specifically 
+for the Apple Watch \cite{apple_specs}. This device is made for Apple users, as it requires 
+an iPhone to make use of all its features. Its operating system is the Apple-designed watchOS.
 
 Much of what makes the Apple Watch quite appealing is the variety of sensor technology that can track
 much of your health and fitness data. This sensor technology will be discussed, along with other
@@ -91,13 +91,13 @@ rate when the watch is not being used interactively.
 The processor and System in Package (SiP) at the core of the Apple Watch Series 5 is Apple's S5 chip,
 shown below in Figure \ref{fig:s5chip}. This is the fifth iteration of their custom-designed 
 smartwatch chip where the entire system is fabricated into a single component with a footprint
-of about 40mm. This SiP includes some the sensors that come with the 
+of about 40mm. This SiP includes 32GB of storage, the memory, as well some the sensors that come with the 
 Series 5, including its GPS component and magnetometer (compass) \cite{apple_specs}.
 
 % APPLE S5 CHIP FIGURE
 \begin{figure}[h]
     \centering
-    \includegraphics[width=.1\linewidth]{media/apple_s5_chip.png}
+    \includegraphics[width=.15\linewidth]{media/apple_s5_chip.png}
     \caption{Apple S5 Processor \cite{apple_s5_pic}}
     \label{fig:s5chip}
 \end{figure}
@@ -110,9 +110,10 @@ be monitored and programmed to alert the wearer if there is any abnormal heart a
 also uses its microphone to monitor noise levels, and alerts the user when current noise exposure could
 pose a risk for long-term hearing damage. 
 
-Arguably the most important sensor on a smartwatch with fitness tracking capabilities is the accelerometer,
-which actually tracks the motion patterns of the watch itself based on acceleration forces \cite{accel_expl}.
-Data from GPS, accelerometer, heart rate monitor, and your own personal health data (height, weight, age) are
+Arguably the most important sensors on a smartwatch with fitness tracking capabilities are the accelerometer,
+which actually tracks the motion patterns of the watch itself based on acceleration forces \cite{accel_expl},
+and the gyroscope. Data from GPS, accelerometer, gyroscope, heart rate monitor, and your own personal 
+health data (height, weight, age) are
 used together to give you valuable insights into your workouts. The Series 5 comes with pre-programmed
 sports like cycling, running, swimming, and yoga, amongst others. In running activities, the watch
 tracks and can display your calories burnt, your pace, your heart rate, your distance, cadence, and
@@ -120,12 +121,39 @@ elapsed time \cite{apple_fitness}. Having this data displayed in real time on yo
 run is something that makes this device so valuable, as it helps people stay motivated and quantitatively
 monitor their improvements.
 
+\paragraph{Apple Watch Summary}
+After analyzing the price-point, features, and specifications of the Apple Watch Series 5, it is clear
+this is a high-end wearable device that values performance highly for a wearable device. It has a battery
+that needs to be recharged each night, and while it carries valuable stats for many different workouts,
+this app is targeted at individuals who want to exercise to remain healthy, and not so much professional
+athletes or athletes who need high-performance functionality for hours at a time (ultra-marathoners and
+Iron-man Triathletes), as the battery would exhaust itself before the workout finishes, as using all sensors
+(especially GPS) for extended periods depletes battery life rapidly \cite{apple_battery}. Therefore, this
+wearable device's main purpose is to allow for smartphone-like functionality on your wrist.
+
 % =========== GARMIN =================
 \subsubsection{Garmin Forerunner 235}
 \paragraph{Background}
 If its name wasn't obvious enough, the Garmin Forerunner 235 is first and foremost a runner's
-watch.
+watch. It weighs 42g, and has a slightly larger footprint than the Apple Watch, fitting in a 45mm square.
+It costs \$319.99, which is significantly less expensive than the Apple Watch Series 5. Battery life using
+it without GPS functionality is 9 days, whereas one charge gives 11 hours of GPS usage. The display (215x180)
+is not touch screen, navigation is done with buttons on the side. It can connect and 
+sync data to a smartphone, but it can also be used independent of any other device. The sensors 
+in this device include GPS, heart rate monitor, and an accelerometer \cite{garmin_price}. 
+It run's Garmin's own proprietary smartwatch OS \cite{garmin_specs}.
 
-\paragraph{Hardware}
+What makes the Forerunner appealing is the trade-offs it makes in comparison with the Apple Watch
+for specializing the device to be a pure running wearable. These specializations and optimizations will
+be discussed in this section.
+
+\paragraph{Hardware and Functionality}
+There are not many resources that explain in detail the exact architecture of the Forerunner's hardware,
+however it is safe to assume it uses a low-footprint, low-power processor, along with on-board memory.
+The exact capacity of the memory is not given, but the watch can store 200 hours of activity data \cite{garmin_price}.
+
+It is also safe to assume that the processor in the Forerunner is slower and uses less power than the S5
+of the Apple Watch, as normal operation of the Forerunner lasts days longer than the Apple Watch.
+
 
 \subsection{Smartwatch Summary}
