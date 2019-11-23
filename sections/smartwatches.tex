@@ -88,8 +88,8 @@ screen from 60Hz to 1Hz, the minimum frequency for the always-on display to accu
 display the time \cite{apple_specs}. This is a clever way to reduce power consumption by reducing frame
 rate when the watch is not being used interactively. 
 
-The processor and System in Package (SiP) at the core of the Apple Watch Series 5 is Apple's S5 chip,
-shown below in Figure \ref{fig:s5chip}. This is the fifth iteration of their custom-designed 
+The processor and System in Package (SiP) at the core of the Apple Watch Series 5 is Apple's S5 64-bit chip,
+shown below in Figure \ref{fig:s5chip}. This is the fifth generation of their custom-designed 
 smartwatch chip where the entire system is fabricated into a single component with a footprint
 of about 40mm. This SiP includes 32GB of storage, the memory, as well some the sensors that come with the 
 Series 5, including its GPS component and magnetometer (compass) \cite{apple_specs}.
@@ -102,6 +102,20 @@ Series 5, including its GPS component and magnetometer (compass) \cite{apple_spe
     \label{fig:s5chip}
 \end{figure}
 % END APPLE S5 CHIP FIGURE
+
+Due to the novelty of the S5 SiP, its predecessor the S4 will be inspected. The S4 and
+S5 SiPs are identical except for the S5's addition of the magnetometer and different
+storage options \cite{s5vss4}. The S4 is powered by two 64-bit ARMv8 cores known as Tempest
+cores, which are Apple-designed energy-efficient (Vortex are the high-performance cores from Apple)
+cores that are used in other products such as iPhones \cite{s4_cores}.
+These cores rely on the ARM A64 instruction set, which is a variant of a pipelined RISC 
+architecture, which implement out-of-order execution, making them more efficient
+than previous generation in-order designs \cite{arm_risc}. The S4 SiP also includes a
+neural engine, which third party developers can take advantage of to run Apple's machine
+learning framework, CoreML, on the Apple Watch itself \cite{core_ml}. Its custom GPU
+is able to use Apple's graphics API, Metal, much like Apple's other products from computers
+to mobile phones, allowing for rich hardware-accelerated graphics content on the 
+Apple Watch \cite{watch_metal}.
 
 The Series 5 incorporates other sensors whose data is processed. These sensors are an electric
 heart rate sensor, which constantly monitors heart rate, and can perform an electrocardiogram 
@@ -129,7 +143,9 @@ this app is targeted at individuals who want to exercise to remain healthy, and 
 athletes or athletes who need high-performance functionality for hours at a time (ultra-marathoners and
 Iron-man Triathletes), as the battery would exhaust itself before the workout finishes, as using all sensors
 (especially GPS) for extended periods depletes battery life rapidly \cite{apple_battery}. Therefore, this
-wearable device's main purpose is to allow for smartphone-like functionality on your wrist.
+wearable device's main purpose is to allow for smartphone-like functionality on your wrist. This design
+for smartphone-like functionality is echoed when analyzing its hardware, as the Apple Watch
+uses the same energy-efficient CPU cores as iPhones.
 
 % =========== GARMIN =================
 \subsubsection{Garmin Forerunner 235}
@@ -184,7 +200,7 @@ application, which likely uses more power than built-in functionality.
 
 \paragraph{Garmin Forerunner 235 Summary}
 It is clear that the Garmin Forerunner does not attempt to be the "smartphone on your wrist" that the Apple
-Watch offers. The Forerunner is an energy efficient wearable that is specialized for tracking running
+Watch offers. The Forerunner is a 32-bit, energy efficient wearable that is specialized for tracking running
 activities. It is not meant for people who wants lots of functionality in their smartwatch, but for people
 looking for a reliable, efficient watch they can use for their fitness tracking and not have to charge every
 single day. Therefore, the Garmin Forerunner 235 is an example of how power consumption is prioritized over
@@ -193,6 +209,9 @@ necessities.
 
 \subsection{Smartwatch Summary}
 Comparing as contrasting the Apple Watch Series 5 and Garmin Forerunner 235 is an insightful case study
-for different varieties of smartwatches. It illustrates different trade-offs between performance and
-power consumption, and shows how regardless of the type of wearable, the footprint of the hardware, and
+for different varieties of smartwatches. The Apple Watch offers functionality and compute power 
+that can normally only be found on smartphones, such as rich graphics and a 64-bit architecture, while
+the Forerunner offers less in terms of rich graphics rendering, and employs a 32-bit architecture.
+This illustrates different trade-offs between performance and power consumption between the 
+two wearables, and shows how regardless of the type of wearable, the footprint of the hardware, and
 power consumption are the two most important design criteria and constraints.
