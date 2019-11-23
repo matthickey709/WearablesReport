@@ -106,8 +106,10 @@ Series 5, including its GPS component and magnetometer (compass) \cite{apple_spe
 Due to the novelty of the S5 SiP, its predecessor the S4 will be inspected. The S4 and
 S5 SiPs are identical except for the S5's addition of the magnetometer and different
 storage options \cite{s5vss4}. The S4 is powered by two 64-bit ARMv8 cores known as Tempest
-cores, which are Apple-designed energy-efficient (Vortex are the high-performance cores from Apple)
-cores that are used in other products such as iPhones \cite{s4_cores}.
+cores, which are Apple-designed energy-efficient (vs. the high-performance Vortex cores)
+cores that are used in other Apple products such as the iPhone \cite{s4_cores}. The maximum clock
+speed of the Tempest cores is 1587 MHz, and they offer 32kB instruction and data caches,
+along with a unified 2MB L2 cache \cite{tempest_stats}.
 These cores rely on the ARM A64 instruction set, which is a variant of a pipelined RISC 
 architecture, which implement out-of-order execution, making them more efficient
 than previous generation in-order designs \cite{arm_risc}. The S4 SiP also includes a
@@ -201,7 +203,7 @@ application, which likely uses more power than built-in functionality.
 \paragraph{Garmin Forerunner 235 Summary}
 It is clear that the Garmin Forerunner does not attempt to be the "smartphone on your wrist" that the Apple
 Watch offers. The Forerunner is a 32-bit, energy efficient wearable that is specialized for tracking running
-activities. It is not meant for people who wants lots of functionality in their smartwatch, but for people
+activities. It is not meant for people who want lots of functionality in their smartwatch, but for people
 looking for a reliable, efficient watch they can use for their fitness tracking and not have to charge every
 single day. Therefore, the Garmin Forerunner 235 is an example of how power consumption is prioritized over
 performance in the power-performance trade-off of wearables, as functionality is optimized to only have the
