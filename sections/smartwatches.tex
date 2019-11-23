@@ -148,12 +148,24 @@ for specializing the device to be a pure running wearable. These specializations
 be discussed in this section.
 
 \paragraph{Hardware and Functionality}
-There are not many resources that explain in detail the exact architecture of the Forerunner's hardware,
-however it is safe to assume it uses a low-footprint, low-power processor, along with on-board memory.
-The exact capacity of the memory is not given, but the watch can store 200 hours of activity data \cite{garmin_price}.
+Please note due to the lack of resources about the Forerunner 235's internal hardware,
+the information provided here is for the Forerunner 230, which is the same as the 235
+but with the absence of a heart rate monitor \cite{forerunner230235}.
 
-It is also safe to assume that the processor in the Forerunner is slower and uses less power than the S5
-of the Apple Watch, as normal operation of the Forerunner lasts days longer than the Apple Watch.
+According to Rich Nass' teardown of the Garmin Forerunner 230, the core microprocessor
+is the Atmel Smart SAMG53 (ATSAMG53), as shown below in Figure \ref{fig:garmTear} \cite{forerunner_teardown}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.6]{media/garmin_teardown.jpg}
+    \caption{The Atmel microprocessor at the core of the Forerunner \cite{forerunner_teardown}.}
+    \label{fig:garmTear}
+\end{figure}
+
+The ATSAMG53 chip is built with the ARM Cortex-M4 core with a three-stage pipeline,
+with 96kB of SRAM on the instruction/data (I/D) bus (for I/D cache), 
+up to 512kB of embedded Flash memory, includes a floating point unit 
+(FPU), and a maximum CPU speed of 48 MHz \cite{atmel_specs}.
 
 Like the Apple Watch, the Forerunner comes pre-loaded with activities, but is primarily focused on
 running and cycling \cite{garmin_price}. It takes many of the same running metrics as the Apple Watch,
