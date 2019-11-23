@@ -121,6 +121,13 @@ choice for a standalone VR headset.
     \label{table:snapdragon} 
 \end{table}
 
+The Kryo 280 CPU implements the ARMv8-A 64-bit pipelined instruction set 
+architecture \cite{kryo_arch}. It has eight cores, four of which can run up to
+the maximum of 2.45 GHz and have a 2MB L2 cache, while the four slower cores have
+a 1MB L2 cache, and the L1 caches are 64kB + 64kB \cite{snapdragon_cache}. The Adreno
+540 GPU supports all of the most common graphics APIs, such as OpenGL, Vulkan,
+OpenCL, and DirectX 12, allowing a wide support set for the visuals it can render \cite{snapdragon_835}.
+
 The sensors onboard the Quest allow for six degrees of freedom (6DOF) in both the headset
 and its controllers. This means that accurate tracking is provided for all three dimensions,
 and orientation along those axes \cite{sixdof_defn}. The 6DOF tracking allows the player's
