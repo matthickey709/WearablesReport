@@ -21,7 +21,7 @@ sensors, but this will be discussed later in this section.
 \begin{figure}[h]
     \centering
     \includegraphics[width=.3\linewidth]{media/vr_headset_example.jpg}
-    \caption{Example of archetypal VR headset \cite{vr_headset_pic}}
+    \caption{Example of a typical VR headset \cite{vr_headset_pic}}
     \label{vr:example}
 \end{figure}
 
@@ -81,54 +81,28 @@ presence of a specialized surgeon.
     \label{vr:med_train}
 \end{figure}
 
-\subsection{Analysis of Examples}
-Two popular examples of virtual reality headsets are the Oculus Quest and the Oculus
-Rift S, both shown below in Figure \ref{headsets:pictures}. Much like the two
-smartwatches discussed earlier in this report, these two headsets have different
-capabilities, which will be discussed later. The pries for these two headsets are listed
-below in Table \ref{headset:price} \cite{quest_price} \cite{rift_price}.
+\subsection{Analysis of a Standalone Headset: Oculus Quest}
+A standalone VR headset means that the VR headset is capable of storing games and
+content on the device itself, and does all of its own processing without being connected
+to a computer \cite{standalone_vr}. The Oculus Quest, one of the most popular
+standalone VR headsets is shown below in Figure \ref{headsets:pictures}, along with
+its controllers. This headset has a retail value of \$549.00 CAD \cite{quest_price}.
 
 % Figure of headsets
 \begin{figure}[h]
     \centering
-    \begin{subfigure}{.5\textwidth}
-      \centering
-      \includegraphics[width=.6\linewidth]{media/oculus_quest.jpg}
-      \caption{Oculus Quest VR Headset \cite{quest_headset}}
-      \label{head:sub1}
-    \end{subfigure}%
-    \begin{subfigure}{.5\textwidth}
-        \centering
-        \includegraphics[width=.6\linewidth]{media/oculus_rifts.jpg}
-        \caption{Oculus Rift S VR Headset \cite{rift_headset}}
-        \label{head:sub2}
-      \end{subfigure}
-    \caption{VR headsets discussed in this report.}
+    \includegraphics[width=.6\linewidth]{media/oculus_quest.jpg}
+    \caption{Oculus Quest VR Headset \cite{quest_headset}}
     \label{headsets:pictures}
 \end{figure}
 
-% Headsets prices table
-\begin{table}[h]
-    \centering
-    \caption{Smartwatch Prices}
-    \csvautotabular{data/headset_prices.csv} 
-    \label{headset:price} 
-\end{table}
+Games and content are loaded onto the device via a mobile phone app, 
+and the headset can then be used anywhere to experience VR gameplay \cite{quest_features}. 
+This device is meant for consumers who want to experience VR gaming, 
+but do not already have an expensive gaming computer, or do not want 
+to make that large investment.
 
-Even though these two headsets come at the same price, they are targeted at different
-market segments, and their architecture reflects that.
-
-\subsubsection{Oculus Quest}
-The Oculus Quest headset is designed to be an "all-in-one" headset, meaning
-that it is the only piece of hardware needed to experience VR.
-This means that all processing and content storage is handled on the headset itself,
-and not by a computer where the headset acts as a display. Games are
-loaded onto the device via a mobile phone app, and the headset can be used
-anywhere to experience VR gameplay \cite{quest_features}. This device is
-meant for consumers who want to experience VR gaming, but do not already have an
-expensive gaming computer, or do not want to make that large investment.
-
-\paragraph{Hardware and Functionality}
+\subsubsection{Hardware and Functionality}
 The Oculus Quest runs on the Qualcomm Snapdragon 835 mobile system on chip (SoC) \cite{oculus_dev_page}.
 This SoC is responsible for all processing and wireless connectivity on the headset. Some 
 of the technical specifications of the Snapdragon 835 are shown
@@ -155,14 +129,18 @@ listed above for \$549 CAD comes with 64GB of internal storage, and 4GB of memor
 \cite{quest_timemag}. The Snapdragon 835 SoC and these memory specifications
 are very similar to that of a mobile phone. In fact, the Google Pixel 2 smartphone
 uses the Snapdragon 835 chip, and comes with the same storage and memory
-specifications \cite{quest_polygon}.
+specifications \cite{quest_polygon}. The only difference is the Quest is
+specialized to be a powerful graphics processing machine, while the Pixel 2
+is meant to be a more general-purpose device, being a smartphone.
 
-\paragraph{Oculus Quest Summary}
+\subsubsection{Oculus Quest Summary}
 Given the fact that the Oculus Quest is a standalone VR headset, and it contains
-near identical specifications to a smartphone, it is an appropriate choice to
-be an entry-level purchase for a consumer wanting to try VR, without the large
-up-front cost of a high-performance computer being a barrier to entry.
-
-\subsubsection{Oculus Rift S}
-foobar foobar
-
+near identical specifications to a smartphone, it is appropriately priced close to
+smartphone prices. This price allows the headset to be a good choice for an 
+entry-level headset for consumers that want to experience VR without the 
+large up-front cost of a high-performance computer being a barrier to entry.
+Obviously, the VR experience will not be as clean on the Oculus Quest when compared
+to VR headsets that connect to a computer (such as the Oculus Rift S), because processing
+and rendering power of a desktop computer compared to that of smartphones is enormous,
+but this is why the Quest is meant for entry-level consumers without these powerful
+computers.
