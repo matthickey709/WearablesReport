@@ -1,21 +1,22 @@
 \subsection{Background}
 The most popular type of wearable in 2019 is the smartwatch \cite{best_watches}. 
 Smartwatches are devices worn on one's wrist, equipped with sensors, and in some 
-cases wireless communication capability for syncing data to a smartphone. They have
+cases, wireless communication capability for syncing data to a smartphone. They have
 rich operating systems (OS), on-board processors and memory, and come in a wide range
 of varieties from basic to high-end, with different specialized models in between \cite{smartwatch_arch_rit}.
 
 % ======= TYPICAL SMARTWATCH SPECIFICATIONS =============
 \subsection{Typical Specifications}
 Modern smartwatches typically have similar components to computers, albeit at a much smaller scale.
-They have an OS, which is most cases is proprietary to the manufacturer (i.e. watchOS for Apple);
+They have an OS, which in most cases is proprietary to the manufacturer (i.e. watchOS for Apple);
 a single- or dual-core processor ranging from 80MHz to over 1.2GHz depending on the type of watch;
 up to a gigabyte of memory; battery life ranging between 18 hours to over a week; and depending on 
 the watch - sensors to measure heart rate, fitness statistics, 
 and atmospheric pressure \cite{smartwatch_arch_rit}.
 
-It is simple to build a system that can accommodate all the required features of a smartwatch
-using normal computing components, however the challenge with a smartwatch is weight, size, and power
+To build a system that can accommodate all the required features of a smartwatch
+using normal computing components can be simple, however 
+the challenge with a smartwatch is weight, size, and power
 consumption, as it needs to fit comfortably on the wrist, and be able to record data for at least
 an entire day on a single charge. This means all components must be lightweight, and energy efficient.
 According to ARM, the most necessary optimizations are using small data memories, using slower clock
@@ -28,8 +29,8 @@ analyzed for the architecture decisions that went into their design and manufact
 \subsection{Analysis of Examples}
 Two popular examples of smartwatches are the Apple Watch Series 5,
 and the Garmin Forerunner 235, both shown below in Figure \ref{watches:pictures}.
-These devices are priced quite differently, carry different levels of functionality, and are
-therefore targeted towards different market segments. Shown below in Table \ref{watch:price} are 
+These devices are priced quite differently, carry different levels of functionality, and
+therefore are targeted towards different market segments. Shown below in Table \ref{watch:price} are 
 prices for the watches listed above \cite{apple_price} \cite{garmin_price}.
 
 % Figure of watches
@@ -68,9 +69,9 @@ section will cover each of the watches shown above in greater detail.
 % APPLE WATCH BACKGROUND
 \paragraph{Background}
 The Apple Watch Series 5 is the newest iteration of smartwatch from Apple Inc., released in September
-2019. Priced at \$529, clearly this is considered a higher-end smartwatch, fitting in with Apple's
-other product lines (iPhone, iPad, and Mac). This watch weighs between 30-40g depending the case, it
-has all-day battery life, a touch screen (324x394), voice call, GPS, compass, and music streaming capabilities,
+2019. Priced at \$529 CAD, clearly this is considered a higher-end smartwatch, fitting in with Apple's
+other product lines (iPhone, iPad, and Mac). This watch weighs between 30-40g (depending its case),
+has an all-day battery life, a touch screen (324x394), voice call, GPS, compass, and music streaming capabilities,
 as well as the ability to run thousands of apps from the Apple App Store made specifically 
 for the Apple Watch \cite{apple_specs}. This device is made for Apple users, as it requires 
 an iPhone to make use of all its features. Its operating system is the Apple-designed watchOS.
@@ -140,14 +141,15 @@ monitor their improvements.
 \paragraph{Apple Watch Summary}
 After analyzing the price-point, features, and specifications of the Apple Watch Series 5, it is clear
 this is a high-end wearable device that values performance highly for a wearable device. It has a battery
-that needs to be recharged each night, and while it carries valuable stats for many different workouts,
-this app is targeted at individuals who want to exercise to remain healthy, and not so much professional
-athletes or athletes who need high-performance functionality for hours at a time (ultra-marathoners and
-Iron-man Triathletes), as the battery would exhaust itself before the workout finishes, as using all sensors
+that needs to be recharged each night, and while it carries valuable statistics for many different workouts,
+this device is targeted at individuals who want to exercise to remain healthy, and not so much professional
+athletes or athletes who need wearables with high-performance functionality for hours at a time (ultra-marathoners and
+Iron-man Triathletes), as the battery would exhaust itself before the workout finishes, because using all sensors
 (especially GPS) for extended periods depletes battery life rapidly \cite{apple_battery}. Therefore, this
 wearable device's main purpose is to allow for smartphone-like functionality on your wrist. This design
 for smartphone-like functionality is echoed when analyzing its hardware, as the Apple Watch
-uses the same energy-efficient CPU cores as iPhones.
+uses the same energy-efficient CPU cores as iPhones, and while these cores are energy efficient
+compared to other cores, they are still high-performance cores.
 
 % =========== GARMIN =================
 \subsubsection{Garmin Forerunner 235}
