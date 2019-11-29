@@ -156,20 +156,20 @@ compared to other cores, they are still high-performance cores.
 \paragraph{Background}
 If its name wasn't obvious enough, the Garmin Forerunner 235 is first and foremost a runner's
 watch. It weighs 42g, and has a slightly larger footprint than the Apple Watch, fitting in a 45mm square.
-It costs \$319.99, which is significantly less expensive than the Apple Watch Series 5. Battery life using
-it without GPS functionality is 9 days, whereas one charge gives 11 hours of GPS usage. The display (215x180)
-is not touch screen, navigation is done with buttons on the side. It can connect and 
-sync data to a smartphone, but it can also be used independent of any other device. The sensors 
+It costs \$319.99 CAD, which is significantly cheaper than the Apple Watch Series 5. Battery life
+without using GPS functionality is 9 days, and one charge gives 11 hours of GPS usage. The display (215x180px)
+is not a touch screen, and navigation is done with buttons on the side. It can connect and 
+sync data to a smartphone, but it can also be used without one. The sensors 
 in this device include GPS, heart rate monitor, and an accelerometer \cite{garmin_price}. 
-It run's Garmin's own proprietary smartwatch OS \cite{garmin_specs}.
+It runs Garmin's own proprietary smartwatch OS \cite{garmin_specs}.
 
-What makes the Forerunner appealing is the trade-offs it makes in comparison with the Apple Watch
+What makes the Forerunner appealing to runners is the trade-offs it makes in comparison with the Apple Watch
 for specializing the device to be a pure running wearable. These specializations and optimizations will
 be discussed in this section.
 
 \paragraph{Hardware and Functionality}
-Please note due to the lack of resources about the Forerunner 235's internal hardware,
-the information provided here is for the Forerunner 230, which is the same as the 235
+Please note, due to the lack of resources about the Forerunner 235's internal hardware,
+the information provided here is for the Forerunner 230, which is the same as the 235,
 but with the absence of a heart rate monitor \cite{forerunner230235}.
 
 According to Rich Nass' teardown of the Garmin Forerunner 230, the core microprocessor
@@ -183,17 +183,14 @@ is the Atmel Smart SAMG53 (ATSAMG53), as shown below in Figure \ref{fig:garmTear
 \end{figure}
 
 The ATSAMG53 chip is built with the ARM Cortex-M4 core with a three-stage pipeline,
-with 96kB of SRAM on the instruction/data (I/D) bus (for I/D cache), 
+with 96kB of SRAM for I/D cache, 
 up to 512kB of embedded Flash memory, includes a floating point unit 
-(FPU), and a maximum CPU speed of 48 MHz \cite{atmel_specs}.
+(FPU), and has a maximum CPU speed of 48 MHz \cite{atmel_specs}.
 
 Like the Apple Watch, the Forerunner comes pre-loaded with activities, but is primarily focused on
 running and cycling \cite{garmin_price}. It takes many of the same running metrics as the Apple Watch,
 like cadence, pace, heart rate, and distance, as shown in Figure \ref{fig:garm_disp}. 
-However, the Forerunner can do so for longer periods due to a lower power consumption.
-An interesting feature built into the Forerunner is the ability to load "courses" onto the watch and have
-the GPS guide you through turn-by-turn \cite{garmin_course}. The Apple Watch does not offer this without downloading a third-party
-application, which likely uses more power than built-in functionality.
+However, the Forerunner can do so for longer periods due to its lower average power consumption.
 
 \begin{figure}[h]
     \centering
@@ -204,18 +201,18 @@ application, which likely uses more power than built-in functionality.
 
 \paragraph{Garmin Forerunner 235 Summary}
 It is clear that the Garmin Forerunner does not attempt to be the "smartphone on your wrist" that the Apple
-Watch offers. The Forerunner is a 32-bit, energy efficient wearable that is specialized for tracking running
+Watch does. The Forerunner is a 32-bit, energy efficient wearable that is specialized for tracking running
 activities. It is not meant for people who want lots of functionality in their smartwatch, but for people
 looking for a reliable, efficient watch they can use for their fitness tracking and not have to charge every
 single day. Therefore, the Garmin Forerunner 235 is an example of how power consumption is prioritized over
-performance in the power-performance trade-off of wearables, as functionality is optimized to only have the
-necessities.
+performance in the power-performance trade-off of wearables, because functionality is optimized to
+forego functionality and performance in favour of longer battery life.
 
 \subsection{Smartwatch Summary}
-Comparing as contrasting the Apple Watch Series 5 and Garmin Forerunner 235 is an insightful case study
+Comparing and contrasting the Apple Watch Series 5 and Garmin Forerunner 235 is an insightful case study
 for different varieties of smartwatches. The Apple Watch offers functionality and compute power 
 that can normally only be found on smartphones, such as rich graphics and a 64-bit architecture, while
 the Forerunner offers less in terms of rich graphics rendering, and employs a 32-bit architecture.
 This illustrates different trade-offs between performance and power consumption between the 
-two wearables, and shows how regardless of the type of wearable, the footprint of the hardware, and
+two wearables, and shows how regardless of the type of wearable, the footprint of the hardware and
 power consumption are the two most important design criteria and constraints.
